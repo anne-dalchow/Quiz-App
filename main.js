@@ -2,8 +2,11 @@ let currentQuestion = 0; // wenn auf next question button müssen diese eins plu
 let currentAnswers = 0;
 let currentRightAnswer = 0;
 let currentQuestionNumber = 1;
+let score = 0;
+
 
 function init() {
+
   document.getElementById("question-array-length").innerHTML =
     allQuestions.length;
   document.getElementById("current-question-number").innerHTML =
@@ -17,6 +20,7 @@ function renderQA() {
 }
 
 function nextQuestionBtn() {
+
   currentQuestion += 1;
   currentAnswers += 1;
   currentRightAnswer += 1;
@@ -24,10 +28,11 @@ function nextQuestionBtn() {
   document.getElementById("current-question-number").innerHTML =
     currentQuestionNumber;
 
-
-    document.querySelectorAll(".answer").forEach(button => {
-     button.style.backgroundColor = "";
-    })
+  document.querySelectorAll(".answer").forEach((button) => {
+    button.classList.remove("bg-danger");
+    button.classList.remove("bg-success")
+  });
+  document.querySelector("#next-question-btn").disabled = true;
 
   renderQA();
 }
@@ -57,14 +62,21 @@ function checkAnswers(answerIndex, event) {
   let correctAnswer = allQuestions[currentQuestion].answers[correctAnswerIndex];
 
   if (clickedAnswer === correctAnswer) {
-    event.target.style.backgroundColor = "green";
+    event.target.classList.add("bg-success");
+    event.target.innerHTML += `<i class="fa-solid fa-check">`;
+    score += 1;
   } else {
-    event.target.style.backgroundColor = "red";
+    event.target.classList.add("bg-danger");
+    event.target.innerHTML += `<i class="fa-solid fa-xmark"></i>`;
 
-    const rightAnswerElement =
-      document.querySelectorAll(".answer")[correctAnswerIndex];
-    rightAnswerElement.style.backgroundColor = "green";
+    const rightAnswerElement = document.querySelectorAll(".answer")[correctAnswerIndex];
+    rightAnswerElement.classList.add("bg-success");
+    rightAnswerElement.innerHTML += `<i class="fa-solid fa-check">`;
   }
+  
+  document.querySelector("#next-question-btn").disabled = false;
+
+
 }
 
 document.querySelectorAll(".answer").forEach((button, index) => {

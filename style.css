@@ -32,6 +32,27 @@ body {
 .answer{
  cursor: pointer;
 }
-.answer:hover{
+.answer:hover:not([disabled]){
  background-color: rgba(3, 35, 65, 0.2);
 }
+.answer:disabled{
+ cursor: no-drop;
+}
+
+.bg-success{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ color: white;
+ cursor: not-allowed;
+}
+
+
+.bg-danger{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ color: white;
+ cursor: not-allowed;
+}
+
