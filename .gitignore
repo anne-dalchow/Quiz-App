@@ -1,0 +1,4 @@
+node_modules/
+git/description
+package-lock.json
+package.json
