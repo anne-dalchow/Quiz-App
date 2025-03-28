@@ -24,14 +24,17 @@ body {
   justify-content: center;
 }
 .quiz-card {
-  width: 50vw;
+  width: 1000px;
+  min-width: 320px;
+  height: 50vh;
   height: fit-content;
   flex-flow: row;
   border-radius: 8px;
   border: none;
 }
 .quiz-topics-container {
-  min-width: 200px;
+  width: 200px;
+
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -43,11 +46,11 @@ body {
 }
 
 .quiz-topics{
- 
   display: flex;
   flex-flow: column;
   align-items: stretch;
-  min-width: 200px;
+  width: 200px;
+
 }
 .quiz-topics div{
   cursor: pointer;
@@ -59,16 +62,23 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 .card-body{
+  display: none;
   flex: 1;
 }
 .answer-container{
   margin: 40px 0;
 }
-.card{
+.answer-card-container{
 display: flex;
 flex-flow: row nowrap;
 align-items: center;
 padding-left: 8px;
+cursor: pointer;
+}
+.answer-card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .answer-letter-box{
@@ -77,19 +87,9 @@ padding-left: 8px;
   border-radius: 4px;
 }
 
-.question-footer {
-  border-top: 1px solid rgb(0, 0, 0, 0.4);
-  margin: 0.5rem;
-  padding-top: 1rem;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.answer {
-  cursor: pointer;
-}
-.answer-card:hover:not([disabled]) {
+
+.answer-card-container:hover:not([disabled]) {
   background-color: rgb(215, 216, 228);
 }
 .answer:disabled {
@@ -102,6 +102,7 @@ padding-left: 8px;
   align-items: center;
   color: white;
   cursor: not-allowed;
+  padding-right: 8px;
 }
 
 .bg-danger {
@@ -110,4 +111,53 @@ padding-left: 8px;
   align-items: center;
   color: white;
   cursor: not-allowed;
+  padding-right: 8px;
+}
+.question-footer {
+  border-top: 1px solid rgb(0, 0, 0, 0.4);
+  margin: 0.5rem;
+  padding-top: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+
+.endcard-body{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 20px;
+  padding: 32px 0px;
+  text-align: center;
+  position: relative;
+}
+.endcard-body img{
+  width: 8rem;
+}
+
+.tropy-img{
+  position: absolute;
+  right: 0;
+  width: 50px;
+  filter: opacity(90%);
+}
+
+.replay-btns{
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+}
+
+@media(max-width: 1250px){
+  .tropy-img{
+    filter: opacity(10%);
+  }
+  .quiz-topics-container,
+  .quiz-topics{
+    width: 150px;
+  }
 }

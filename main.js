@@ -25,28 +25,39 @@ function nextQuestionBtn() {
   currentAnswers += 1;
   currentRightAnswer += 1;
   currentQuestionNumber += 1;
+
+  if(currentQuestion >= allQuestions.length){
+    showEndcard();
+  }
+  else{
   document.getElementById("current-question-number").innerHTML =
     currentQuestionNumber;
 
-  document.querySelectorAll(".answer").forEach((button) => {
+  document.querySelectorAll(".answer-card-container").forEach((button) => {
     button.classList.remove("bg-danger");
-    button.classList.remove("bg-success")
-  });
+    button.classList.remove("bg-success");
+      });
   document.querySelector("#next-question-btn").disabled = true;
 
   renderQA();
+    }
+    
 }
 
 function showQuestion() {
+
   document.getElementById("questions").innerHTML = "";
   let question = allQuestions[currentQuestion].question;
   document.getElementById("questions").innerHTML = question;
-}
+  }
+
 
 function showAnswers() {
+
   let answers = allQuestions[currentAnswers].answers;
-  let answerContainers = document.querySelectorAll(".answer");
+  let answerContainers = document.querySelectorAll(".answer-card");
   answerContainers.innerHTML = "";
+
 
   answerContainers.forEach((container, index) => {
     container.innerHTML = "";
@@ -55,6 +66,7 @@ function showAnswers() {
     }
   });
 }
+
 
 function checkAnswers(answerIndex, event) {
   let clickedAnswer = allQuestions[currentQuestion].answers[answerIndex];
@@ -69,7 +81,7 @@ function checkAnswers(answerIndex, event) {
     event.target.parentNode.classList.add("bg-danger");
     event.target.innerHTML += `<i class="fa-solid fa-xmark"></i>`;
 
-    const rightAnswerElement = document.querySelectorAll(".answer")[correctAnswerIndex];
+    const rightAnswerElement = document.querySelectorAll(".answer-card")[correctAnswerIndex];
     rightAnswerElement.parentNode.classList.add("bg-success");
     rightAnswerElement.innerHTML += `<i class="fa-solid fa-check">`;
   }
@@ -79,8 +91,13 @@ function checkAnswers(answerIndex, event) {
 
 }
 
-document.querySelectorAll(".answer").forEach((button, index) => {
+document.querySelectorAll(".answer-card").forEach((button, index) => {
   button.addEventListener("click", function (event) {
     checkAnswers(index, event);
   });
 });
+
+
+function showEndcard(){
+  document.querySelector(".card-body").innerHTML ="";
+}
