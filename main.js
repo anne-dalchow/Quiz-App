@@ -62,15 +62,15 @@ function checkAnswers(answerIndex, event) {
   let correctAnswer = allQuestions[currentQuestion].answers[correctAnswerIndex];
 
   if (clickedAnswer === correctAnswer) {
-    event.target.classList.add("bg-success");
+    event.target.parentNode.classList.add("bg-success");
     event.target.innerHTML += `<i class="fa-solid fa-check">`;
     score += 1;
   } else {
-    event.target.classList.add("bg-danger");
+    event.target.parentNode.classList.add("bg-danger");
     event.target.innerHTML += `<i class="fa-solid fa-xmark"></i>`;
 
     const rightAnswerElement = document.querySelectorAll(".answer")[correctAnswerIndex];
-    rightAnswerElement.classList.add("bg-success");
+    rightAnswerElement.parentNode.classList.add("bg-success");
     rightAnswerElement.innerHTML += `<i class="fa-solid fa-check">`;
   }
   
