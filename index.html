@@ -19,7 +19,7 @@
     <!-- Style files -->
     <link rel="stylesheet" href="./style/standard.css" />
     <link rel="stylesheet" href="./style/assets.css" />
-    <link rel="stylesheet" href="./style copy.css" />
+    <link rel="stylesheet" href="./style.css" />
     <!-- fontawesome file -->
     <script
       src="https://kit.fontawesome.com/c14be6846e.js"
@@ -40,10 +40,28 @@
     <main>
       <div class="quiz-card-container">
         <div class="card quiz-card">
+          <!-- Start Section, Choose Theme -->
+          <div class="start-menu-body">
+            <img src="./assets/img/logo.png" alt="Logo" />
+            <h3>Welcome to the Frontend Quiz</h3>
+            <p>Choose one theme and start the challenge</p>
+            <div class="quiz-topics">
+              <div>
+                <h4 id="html-quiz" onclick="initSelectedQuiz(event)">HTML</h4>
+              </div>
+              <div>
+                <h4 id="css-quiz" onclick="initSelectedQuiz(event)">CSS</h4>
+              </div>
+              <div>
+                <h4 id="js-quiz" onclick="initSelectedQuiz(event)">JS</h4>
+              </div>
+            </div>
+          </div>
+          <!-- Default Container with selected Quiz -->
           <div class="quiz-topics-container">
             <img src="./assets/img/logo.png" alt="Logo" />
             <div class="quiz-topics">
-              <div class="current-quiz-topic">
+              <div>
                 <h4>HTML</h4>
               </div>
               <div>
@@ -54,24 +72,7 @@
               </div>
             </div>
           </div>
-          <!-- Start Section -->
-          <div class="start-menu-body">
-            <h3>
-              Welcome to <br />
-              the amazing <span class="quiz-topic-tag">HTML </span>Quiz
-            </h3>
-            <h5>Ready for a challenge?</h5>
-            <p>Choose one theme on the left side and start the Challenge</p>
-            <div class="quiz-topic-btns">
-              <button
-                type="button"
-                class="btn btn-primary"
-                onclick="startQuizBtn()"
-              >
-                START NOW
-              </button>
-            </div>
-          </div>
+
           <!-- Question Section -->
           <div class="card-body">
             <div
@@ -85,7 +86,7 @@
               <div class="progress-bar" style="width: 0%">0%</div>
             </div>
 
-            <h5 class="card-title m-2" id="questions">Frage</h5>
+            <h5 class="card-title" id="questions">Frage</h5>
 
             <div class="answer-container">
               <div class="card answer-card-container m-2">

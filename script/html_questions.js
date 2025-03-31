@@ -91,5 +91,15 @@ let allHTMLQuestions = [
   ],
   "right_answer": 0
 },
+{
+  "question": "Welcher HTML-Tag wird verwendet, um eine Tabelle zu erstellen?",
+  "answers": [
+    "table",
+    "tr",
+    "td",
+    "tab"
+  ],
+  "right_answer": 0
+}
 
 ];
