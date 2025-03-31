@@ -1,22 +1,3 @@
-/*Best Pratice for Clean Code
-
-function showHTMLQuestion (){
-if (gameIsOver()){
-showEndScreen();}
-else{
-updateProgressBar();
-updateToNextQuestion()};
-}*/
-
-/**
-<!-- onclick load allHTMLQuestion -->
-<h4>HTML</h4>
-<!-- onclick load allCSSQuestion -->
-<h4>CSS</h4>
-<!-- onclick load allJSQuestion -->
-<h4>JS</h4>
- */
-
 let selectedQuiz;
 let currentQuestion = 0;
 let currentQuizAnswers = 0;
