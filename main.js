@@ -23,12 +23,16 @@ let currentQuizAnswers = 0;
 let currentQuestionNumber = 1;
 let score = 0;
 
-let audioSuccess = new Audio("./assets/audio/win.mp3");
-let audioFail = new Audio("./assets/audio/fail.mp3");
+const startMenu = document.querySelector(".start-menu-body");
+const cardBody = document.querySelector(".card-body");
+const topicsContainer =document.querySelector(".quiz-topics-container");
+const endcardBody = document.querySelector(".endcard-body");
+
+const audioGameOver = new Audio("./assets/audio/win.mp3");
 
 function init() {
-  document.querySelector(".start-menu-body").style.display = "flex";
-  document.querySelector(".endcard-body").style.display = "none";
+  startMenu.style.display = "flex";
+  endcardBody.style.display = "none";
 }
 
 function renderQA() {
@@ -36,30 +40,27 @@ function renderQA() {
   showAnswers();
 }
 function startQuiz(selectedQuiz) {
-  const startMenu = document.querySelector(".start-menu-body");
-  const topicsContainer = document.querySelector(".quiz-topics-container");
-  const cardBody = document.querySelector(".card-body");
 
   setTimeout(() => {
     startMenu.style.display ="none";
     topicsContainer.style.display = "flex";
     cardBody.style.display ="flex";
+
     setTimeout(() => {
       topicsContainer.classList.add("visible");
       cardBody.classList.add("visible");
-    }, 1); // Kleines Delay für die Transition
+    }, 1); 
   }, 100);
 
   document.getElementById("question-array-length").innerHTML =
     selectedQuiz.length;
   document.getElementById("current-question-number").innerHTML =
     currentQuestionNumber;
+
   renderQA();
 }
 
 function initSelectedQuiz(event) {
- // Startet nach der Breiten-Animation
-
   if (event.target === document.getElementById("html-quiz")) {
     selectedQuiz = allHTMLQuestions;
   } else if (event.target === document.getElementById("css-quiz")) {
@@ -67,8 +68,9 @@ function initSelectedQuiz(event) {
   } else if (event.target === document.getElementById("js-quiz")) {
     selectedQuiz = allJSQuestions;
   }
+
   startQuiz(selectedQuiz);
-}
+} 
 
 function nextQuestionBtn() {
   currentQuestion++;
@@ -156,18 +158,21 @@ function updateProgressBar() {
 }
 
 function showEndcard() {
-  let cardBody = document.querySelector(".card-body");
-  cardBody.style.display = "none";
-
-  let endcardBody = document.querySelector(".endcard-body");
-  endcardBody.style.display = "flex";
+  setTimeout(() => {
+    cardBody.style.display = "none";
+    topicsContainer.style.display = "none";
+    endcardBody.style.display = "flex";
+    setTimeout(() => {
+      endcardBody.classList.add("visible");
+    }, 1); 
+  }, 100);
   showScore();
 
-  if (selectedQuiz) {
+  if (selectedQuiz === allHTMLQuestions) {
     document.querySelector(".quiz-topic-tag").innerHTML = "HTML";
-  } else if (allCSSQuestions) {
+  } else if (selectedQuiz === allCSSQuestions) {
     document.querySelector(".quiz-topic-tag").innerHTML = "CSS";
-  } else if (allJSQuestions) {
+  } else if (selectedQuiz === allJSQuestions) {
     document.querySelector(".quiz-topic-tag").innerHTML = "JavaScript";
   }
 
@@ -180,10 +185,9 @@ function showEndcard() {
 function showScore() {
   let scoreContainer = document.getElementById("score-container");
   if (score === selectedQuiz.length) {
-    audioSuccess.play();
     scoreContainer.innerHTML = ` ${score} / ${selectedQuiz.length} <br> You are amazing! `;
   } else {
-    scoreContainer.innerHTML = ` ${score} / ${selectedQuiz.length}`;
-    audioFail.play();
+    scoreContainer.innerHTML = ` ${score} / ${selectedQuiz.length} <br> Keep going!`;
   }
+  audioGameOver.play();
 }
