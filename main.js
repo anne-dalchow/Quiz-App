@@ -1,6 +1,5 @@
 let selectedQuiz;
 let currentQuestion = 0;
-let currentQuizAnswers = 0;
 let currentQuestionNumber = 1;
 let score = 0;
 
@@ -20,7 +19,8 @@ function renderQA() {
   showQuestion();
   showAnswers();
 }
-function startQuiz(selectedQuiz) {
+function startQuiz() {
+  score = 0;
 
   setTimeout(() => {
     startMenu.style.display ="none";
@@ -50,13 +50,13 @@ function initSelectedQuiz(event) {
     selectedQuiz = allJSQuestions;
   }
 
-  startQuiz(selectedQuiz);
+  startQuiz();
 } 
 
 function nextQuestionBtn() {
   currentQuestion++;
   currentQuestionNumber++;
-  currentQuizAnswers++;
+
 
   if (currentQuestion >= selectedQuiz.length) {
     showEndcard();
@@ -82,13 +82,15 @@ function showQuestion() {
 }
 
 function showAnswers() {
-  let answers = selectedQuiz[currentQuizAnswers].answers;
+  let answers = selectedQuiz[currentQuestion].answers;
   let answerContainers = document.querySelectorAll(".answer-card");
 
   answerContainers.forEach((container, index) => {
     container.innerHTML = "";
     if (index < answers.length) {
       container.innerHTML = answers[index];
+    } else {
+      container.style.display = "none";
     }
   });
 }
@@ -130,10 +132,8 @@ function showWrongAnswer(event, correctAnswerIndex) {
 
 function updateProgressBar() {
   let progressBar = document.querySelector(".progress-bar");
-  let progressBarWidth = parseInt(progressBar.style.width) || 0;
-  let addProgressWidth = Math.round(100 / selectedQuiz.length);
+  let progressBarWidth = Math.round((currentQuestion / selectedQuiz.length) * 100);
 
-  progressBarWidth += addProgressWidth;
   progressBar.style.width = progressBarWidth + "%";
   progressBar.innerHTML = `${progressBarWidth}%`;
 }
@@ -158,9 +158,11 @@ function showEndcard() {
   }
 
   let reloadBtn = document.getElementById("reload-btn");
-  reloadBtn.addEventListener("click", () => {
-    location.reload();
-  });
+  reloadBtn.removeEventListener("click", reloadPage);
+  reloadBtn.addEventListener("click", reloadPage);
+}
+function reloadPage() {
+  location.reload();
 }
 
 function showScore() {
@@ -172,3 +174,17 @@ function showScore() {
   }
   audioGameOver.play();
 }
+
+
+
+/**
+
+4️⃣ showRightAnswer() & showWrongAnswer() könnten optimiert werden
+Beide Funktionen fügen ein Icon zur Antwort hinzu:
+event.target.innerHTML += `<i class="fa-solid fa-check">`;
+Falls der Nutzer eine Frage zurückgeht oder neu lädt, könnte das mehrfach passieren.
+➡ Lösung: Prüfe zuerst, ob das Icon bereits existiert, bevor du es erneut hinzufügst.
+
+
+5. Zurück Button/ Abbrechen button hinzufügen
+ */

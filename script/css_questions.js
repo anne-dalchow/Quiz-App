@@ -10,7 +10,7 @@ let allCSSQuestions = [
    "right_answer": 2
  },
  {
-   "question": "Welche Einheit wird in CSS NICHT für Größenangaben verwendet?",
+   "question": "Welche Einheit wird in CSS NICHT verwendet?",
    "answers": [
      "em",
      "px",

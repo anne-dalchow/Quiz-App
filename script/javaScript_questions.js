@@ -43,7 +43,7 @@ let allJSQuestions = [
    "question": "Wie kann man einen Kommentar in JavaScript schreiben?",
    "answers": [
      "# Das ist ein Kommentar",
-     "<!-- Das ist ein Kommentar -->",
+     "&lt;!-- Das ist ein Kommentar --&gt;",
      "// Das ist ein Kommentar",
      "/* Das ist ein Kommentar */"
    ],
@@ -80,7 +80,7 @@ let allJSQuestions = [
    "right_answer": 0
  },
  {
-   "question": "Wie prüft man, ob zwei Werte gleich sind (ohne Typumwandlung)?",
+   "question": "Wie prüft man, ob zwei Werte gleich sind (strikter Vergleich)?",
    "answers": [
      "===",
      "==",
