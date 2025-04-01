@@ -5,7 +5,6 @@ let score = 0;
 
 const startMenu = document.querySelector(".start-menu-body");
 const cardBody = document.querySelector(".card-body");
-const topicsContainer =document.querySelector(".quiz-topics-container");
 const endcardBody = document.querySelector(".endcard-body");
 
 const audioGameOver = new Audio("./assets/audio/win.mp3");
@@ -23,12 +22,12 @@ function startQuiz() {
   score = 0;
 
   setTimeout(() => {
-    startMenu.style.display ="none";
-    topicsContainer.style.display = "flex";
+    document.getElementById("welcome-text").style.display ="none";
+    startMenu.classList.remove("start-menu-body");
+    startMenu.classList.add("quiz-topics-container","visible");
     cardBody.style.display ="flex";
 
     setTimeout(() => {
-      topicsContainer.classList.add("visible");
       cardBody.classList.add("visible");
     }, 1); 
   }, 100);
@@ -42,12 +41,19 @@ function startQuiz() {
 }
 
 function initSelectedQuiz(event) {
-  if (event.target === document.getElementById("html-quiz")) {
+  const htmlQuiz = document.getElementById("html-quiz");
+  const cssQuiz = document.getElementById("css-quiz");
+  const jsQuiz = document.getElementById("js-quiz");
+
+  if (event.target === htmlQuiz) {
     selectedQuiz = allHTMLQuestions;
-  } else if (event.target === document.getElementById("css-quiz")) {
+    htmlQuiz.parentNode.classList.add("current-quiz-topic");
+  } else if (event.target === cssQuiz) {
     selectedQuiz = allCSSQuestions;
-  } else if (event.target === document.getElementById("js-quiz")) {
+    cssQuiz.parentNode.classList.add("current-quiz-topic");
+  } else if (event.target === jsQuiz) {
     selectedQuiz = allJSQuestions;
+    jsQuiz.parentNode.classList.add("current-quiz-topic");
   }
 
   startQuiz();
@@ -141,12 +147,12 @@ function updateProgressBar() {
 function showEndcard() {
   setTimeout(() => {
     cardBody.style.display = "none";
-    topicsContainer.style.display = "none";
+    startMenu.style.display = "none";
     endcardBody.style.display = "flex";
     setTimeout(() => {
       endcardBody.classList.add("visible");
-    }, 1); 
-  }, 100);
+    }, 10); 
+  }, 300);
   showScore();
 
   if (selectedQuiz === allHTMLQuestions) {
