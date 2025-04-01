@@ -1,18 +1,5 @@
 
-* {
-  --main-color: rgb(0, 47, 90);
-  --main-coler-light: rgb(38, 53, 92);
-  --accent-color: rgb(255, 255, 255);
-  --wrong-answer: rgb(225, 163, 164);
-  --wrong-answer-letter: rgb(248, 31, 22);
-}
 
-h4 {
-  padding: 8px 16px 4px 16px !important;
-}
-body {
-  background-color: var(--main-color);
-}
 .navbar {
   background-color: var(--accent-color);
 }
@@ -80,8 +67,7 @@ body {
   font-size: 1.2rem;
 }
 
-.start-menu-body,
-.endcard-body {
+.start-menu-body{
   width: 100%;
   display: flex;
   flex-flow: column wrap;
@@ -104,28 +90,7 @@ body {
   display: flex;
   opacity: 1;
 }
-.endcard-body{
-  opacity: 0;
-  transition: opacity 0.8s ease-in-out;
-}
-.endcard-body.visible{
-  opacity: 1;
-}
-.endcard-body img {
-  width: 128px;
-}
-.tropy-img {
-  position: absolute;
-  right: 0;
-  width: 50px;
-  filter: opacity(90%);
-}
-.replay-btns {
-  display: flex;
-  flex-flow: column wrap;
-  gap: 8px;
-}
-/* Ende */
+
 .progress-bar {
    background-color:rgb(97, 114, 163) !important; 
 }
@@ -215,6 +180,40 @@ body {
 .modal {
   animation-name: none !important;
 }
+
+/* Endcard Section */
+.endcard-body{
+  opacity: 0;
+  width: 100%;
+  display: none;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 0px;
+  text-align: center;
+  position: relative;
+  
+  transition: opacity 0.8s ease-in-out;
+}
+.endcard-body.visible{
+  opacity: 1;
+}
+.endcard-body img {
+  width: 128px;
+}
+.tropy-img {
+  position: absolute;
+  right: 0;
+  width: 50px;
+  filter: opacity(90%);
+}
+.replay-btns {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 8px;
+}
+/* End */
 
 @media (max-width: 700px) {
   .tropy-img {

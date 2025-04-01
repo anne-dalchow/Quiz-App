@@ -192,5 +192,5 @@ Falls der Nutzer eine Frage zurückgeht oder neu lädt, könnte das mehrfach pas
 ➡ Lösung: Prüfe zuerst, ob das Icon bereits existiert, bevor du es erneut hinzufügst.
 
 
-5. Zurück Button/ Abbrechen button hinzufügen
+5. Onclick Events entfernen und durch addEventlistener ersetzen
  */
