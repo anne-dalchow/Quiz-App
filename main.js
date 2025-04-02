@@ -157,7 +157,6 @@ function showDisabledAnswers() {
       div.style.opacity = 0.5;
     }
   });
-
 }
 
 function updateProgressBar() {
@@ -209,9 +208,37 @@ function showScore() {
 
 /*
 - Onclick Events entfernen und durch addEventlistener ersetzen
--             <div class="answer-container">
-              <div class="card answer-card-container m-2"disabled>
-                <div class="answer-letter-box">A</div>
-                <div class="card-body answer-card">Antwort</div>
-              </div>
+  <body onload="init()">
+  -----------------------------------------------------------------------------------------------
+
+<div class="quiz-topics">
+<div>
+<h4 id="html-quiz" onclick="initSelectedQuiz(event)">HTML</h4>
+</div>
+<div>
+<h4 id="css-quiz" onclick="initSelectedQuiz(event)">CSS</h4>
+</div>
+<div>
+<h4 id="js-quiz" onclick="initSelectedQuiz(event)">JS</h4>
+</div>
+</div>
+-----------------------------------------------------------------------------------------------
+
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancel </button>
+<button type="button" class="btn btn-primary" onclick="reloadPage()"> Yes </button>
+</div>
+-----------------------------------------------------------------------------------------------
+
+<div class="question-footer">
+<button
+type="button"
+class="btn btn-primary"
+id="next-question-btn"
+onclick="nextQuestionBtn()"
+disabled> 
+Next Question
+</button>
+</div>
+-----------------------------------------------------------------------------------------------
  */
