@@ -40,7 +40,7 @@ let allJSQuestions = [
    "right_answer": 1
  },
  {
-   "question": "Wie kann man einen Kommentar in JavaScript schreiben?",
+   "question": "Wie kann man einen einzeiligen Kommentar in JavaScript schreiben?",
    "answers": [
      "# Das ist ein Kommentar",
      "&lt;!-- Das ist ein Kommentar --&gt;",

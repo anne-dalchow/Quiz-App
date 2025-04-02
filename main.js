@@ -55,6 +55,10 @@ function initSelectedQuiz(event) {
     selectedQuiz = allJSQuestions;
     jsQuiz.parentNode.classList.add("current-quiz-topic");
   }
+  document.querySelectorAll(".quiz-topics h4").forEach((h4)=>{
+    h4.removeAttribute("onclick");
+    h4.parentNode.style.cursor ="default";
+  })
 
   startQuiz();
 } 
@@ -63,14 +67,12 @@ function nextQuestionBtn() {
   currentQuestion++;
   currentQuestionNumber++;
 
-
   if (currentQuestion >= selectedQuiz.length) {
     showEndcard();
   } else {
     document.getElementById("current-question-number").innerHTML =
       currentQuestionNumber;
     document.querySelector("#next-question-btn").disabled = true;
-    toggleDisabledAnswers();
     resetAnswerStyles();
     updateProgressBar();
     renderQA();
@@ -78,8 +80,9 @@ function nextQuestionBtn() {
 }
 
 function resetAnswerStyles() {
-  document.querySelectorAll(".answer-card-container").forEach((button) => {
-    button.classList.remove("bg-danger", "bg-success");
+  document.querySelectorAll(".answer-card-container").forEach((div) => {
+    div.classList.remove("bg-danger", "bg-success", "disabled");
+    div.style.opacity = 1;
   });
 }
 
@@ -127,7 +130,7 @@ function showRightAnswer(event) {
     event.target.parentNode.classList.add("bg-success");
     score += 1;
   }
-  toggleDisabledAnswers();
+  showDisabledAnswers();
 }
 
 function showWrongAnswer(event, correctAnswerIndex) {
@@ -138,17 +141,23 @@ function showWrongAnswer(event, correctAnswerIndex) {
 
   const rightAnswerElement =
     document.querySelectorAll(".answer-card")[correctAnswerIndex];
+
   if(!rightAnswerElement.querySelector("i.fa-check")){
     rightAnswerElement.parentNode.classList.add("bg-success");
     rightAnswerElement.innerHTML += `<i class="fa-solid fa-check">`;
   }
-  toggleDisabledAnswers();
+  showDisabledAnswers();
 }
 
-function toggleDisabledAnswers() {
+function showDisabledAnswers() {
   document.querySelectorAll(".answer-card-container").forEach((div) => {
-    div.classList.toggle("disabled");
+    div.classList.add("disabled");
+
+    if(!div.classList.contains("bg-success") && !div.classList.contains("bg-danger")){
+      div.style.opacity = 0.5;
+    }
   });
+
 }
 
 function updateProgressBar() {
