@@ -70,6 +70,7 @@ function nextQuestionBtn() {
     document.getElementById("current-question-number").innerHTML =
       currentQuestionNumber;
     document.querySelector("#next-question-btn").disabled = true;
+    toggleDisabledAnswers();
     resetAnswerStyles();
     updateProgressBar();
     renderQA();
@@ -121,19 +122,33 @@ function checkAnswers(answerIndex, event) {
 }
 
 function showRightAnswer(event) {
-  event.target.parentNode.classList.add("bg-success");
-  event.target.innerHTML += `<i class="fa-solid fa-check">`;
-  score += 1;
+  if(!event.target.querySelector("i.fa-check")){
+    event.target.innerHTML += `<i class="fa-solid fa-check">`;
+    event.target.parentNode.classList.add("bg-success");
+    score += 1;
+  }
+  toggleDisabledAnswers();
 }
 
 function showWrongAnswer(event, correctAnswerIndex) {
-  event.target.parentNode.classList.add("bg-danger");
-  event.target.innerHTML += `<i class="fa-solid fa-xmark"></i>`;
+  if(!event.target.querySelector("i.fa-xmark")){
+    event.target.innerHTML += `<i class="fa-solid fa-xmark"></i>`;
+    event.target.parentNode.classList.add("bg-danger");
+  }
 
   const rightAnswerElement =
     document.querySelectorAll(".answer-card")[correctAnswerIndex];
-  rightAnswerElement.parentNode.classList.add("bg-success");
-  rightAnswerElement.innerHTML += `<i class="fa-solid fa-check">`;
+  if(!rightAnswerElement.querySelector("i.fa-check")){
+    rightAnswerElement.parentNode.classList.add("bg-success");
+    rightAnswerElement.innerHTML += `<i class="fa-solid fa-check">`;
+  }
+  toggleDisabledAnswers();
+}
+
+function toggleDisabledAnswers() {
+  document.querySelectorAll(".answer-card-container").forEach((div) => {
+    div.classList.toggle("disabled");
+  });
 }
 
 function updateProgressBar() {
@@ -183,14 +198,11 @@ function showScore() {
 
 
 
-/**
-
-4️⃣ showRightAnswer() & showWrongAnswer() könnten optimiert werden
-Beide Funktionen fügen ein Icon zur Antwort hinzu:
-event.target.innerHTML += `<i class="fa-solid fa-check">`;
-Falls der Nutzer eine Frage zurückgeht oder neu lädt, könnte das mehrfach passieren.
-➡ Lösung: Prüfe zuerst, ob das Icon bereits existiert, bevor du es erneut hinzufügst.
-
-
-5. Onclick Events entfernen und durch addEventlistener ersetzen
+/*
+- Onclick Events entfernen und durch addEventlistener ersetzen
+-             <div class="answer-container">
+              <div class="card answer-card-container m-2"disabled>
+                <div class="answer-letter-box">A</div>
+                <div class="card-body answer-card">Antwort</div>
+              </div>
  */

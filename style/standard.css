@@ -3,7 +3,7 @@
  padding: 0;
  box-sizing: border-box;
  --main-color: rgb(0, 47, 90);
- --main-coler-light: rgb(38, 53, 92);
+ --main-color-light: rgb(38, 53, 92);
  --accent-color: rgb(255, 255, 255);
  --wrong-answer: rgb(225, 163, 164);
  --wrong-answer-letter: rgb(248, 31, 22);

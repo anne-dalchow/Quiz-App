@@ -1,0 +1,290 @@
+/* assets.css */
+
+/* Container für die Quizkarte */
+.quiz-card-container {
+ margin-top: 50px;
+ padding: 16px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+/* Stile für die Quizkarte */
+.quiz-card {
+ width: 1000px;
+ min-width: 320px;
+ height: 550px;
+ flex-flow: row;
+ border-radius: 0.5rem;
+ border: none;
+}
+
+/* Navbar */
+.navbar {
+ background-color: var(--accent-color);
+}
+
+/* Menü mit den Quiz-Themen */
+.quiz-topics-container {
+ width: 200px;
+ display: flex;
+ opacity: 0;
+ transition: opacity 0.8s ease-in-out;
+ flex-flow: column;
+ align-items: center;
+ justify-content: start;
+ gap: 48px;
+ background-color: var(--main-coler-light);
+ color: white;
+ padding: 32px 0px;
+}
+
+/* Sichtbarkeit der Quiz-Themen aktivieren */
+.quiz-topics-container.visible {
+ opacity: 1;
+}
+
+/* Struktur der Quiz-Themen */
+.quiz-topics {
+ display: flex;
+ flex-flow: column;
+ align-items: stretch;
+ width: 100%;
+ gap: 8px;
+}
+
+/* Allgemeines Aussehen der Quiz-Themen */
+.quiz-topics div {
+ background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Aktuelles Quiz-Thema */
+.quiz-topics .current-quiz-topic {
+ background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Hover-Effekt für Themen */
+.start-menu-body .quiz-topics div:hover {
+ cursor: pointer;
+ background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Startbildschirm-Layout */
+.start-menu-body {
+ background-color: var(--main-coler-light);
+ color: white;
+ opacity: 1;
+ transition: opacity 0.8s ease-in-out;
+ width: 100%;
+ display: flex;
+ flex-flow: column wrap;
+ justify-content: center;
+ align-items: center;
+ gap: 24px;
+ padding: 32px 0px;
+ text-align: center;
+ position: relative;
+}
+
+/* Schriftgröße für das Willkommenstext */
+#welcome-text p {
+ font-size: 1.2rem;
+}
+
+/* Anzeige der Fragen */
+.card-body {
+ position: relative;
+ display: none;
+ flex-flow: column wrap;
+ justify-content: center;
+ opacity: 0;
+ transition: opacity 0.8s ease-in-out;
+}
+
+/* Sichtbarkeit der Fragen aktivieren */
+.card-body.visible {
+ display: flex;
+ opacity: 1;
+}
+
+/* Fortschrittsbalken */
+.progress {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ border-radius: 0 0.5rem 0 0;
+ background-color: rgba(117, 137, 187, 0.2);
+}
+
+.progress-bar {
+ background-color: rgb(97, 114, 163) !important;
+}
+
+/* Fragen-Container */
+.question-container {
+ background-color: rgba(117, 137, 187, 0.2);
+ margin: auto 0;
+ height: 100px;
+ position: absolute;
+ left: 0;
+ right: 0;
+ top: 16px;
+}
+
+/* Gestaltung der Antwortmöglichkeiten */
+.answer-container {
+ margin: 40px 0;
+}
+
+/* Container für jede einzelne Antwort */
+.answer-card-container {
+ display: flex;
+ flex-flow: row nowrap;
+ align-items: center;
+ padding-left: 8px;
+ cursor: pointer;
+}
+
+/* Antwortkarten */
+.answer-card {
+ display: flex;
+ flex-flow: row wrap;
+ justify-content: space-between;
+ align-items: center;
+ opacity: 1;
+}
+
+/* Gestaltung des Antwort-Buchstabens */
+.answer-letter-box {
+ background-color: rgba(161, 162, 172, 0.26);
+ padding: 8px 16px;
+ border-radius: 4px;
+}
+
+/* Hover-Effekt für Antwortkarten */
+.answer-card-container:hover:not([disabled]) {
+ background-color: rgb(215, 216, 228);
+}
+
+/* Disabled für Antwortkarten */
+.answer:disabled {
+ cursor: no-drop;
+}
+
+/* Erfolg (richtige Antwort) */
+.bg-success {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ color: white;
+ cursor: not-allowed;
+ padding-right: 8px;
+}
+
+/* Fehler (falsche Antwort) */
+.bg-danger {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ color: white;
+ cursor: not-allowed;
+ padding-right: 8px;
+}
+
+/* Footer für Fragen */
+.question-footer {
+ border-top: 1px solid rgb(0, 0, 0, 0.4);
+ margin: 8px;
+ padding: 16px;
+ display: flex;
+ justify-content: space-between;
+ align-items: baseline;
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ right: 0;
+}
+
+/* Modal-Stile */
+.modal {
+ animation-name: none !important;
+}
+
+/* Endcard */
+.endcard-body {
+ opacity: 0;
+ width: 100%;
+ display: none;
+ flex-flow: column wrap;
+ justify-content: center;
+ align-items: center;
+ gap: 24px;
+ padding: 32px 0px;
+ text-align: center;
+ position: relative;
+ transition: opacity 0.8s ease-in-out;
+}
+
+/* Sichtbarkeit des Endcards aktivieren */
+.endcard-body.visible {
+ opacity: 1;
+}
+
+/* Endcard-Logo */
+.endcard-body img {
+ width: 128px;
+}
+
+/* Trophäenbild */
+.tropy-img {
+ position: absolute;
+ right: 0;
+ width: 50px;
+ filter: opacity(90%);
+}
+
+/* Wiederholen/Teilen Buttons im Endcard */
+.replay-btns {
+ display: flex;
+ flex-flow: column wrap;
+ gap: 8px;
+}
+
+/* Mobile-Styles */
+@media (max-width: 700px) {
+ .tropy-img {
+   filter: opacity(10%);
+ }
+
+ .quiz-topics-container,
+ .quiz-topics {
+   width: 150px;
+ }
+}
+
+/* Sehr kleine Bildschirmgrößen */
+@media (max-width: 400px) {
+ .quiz-card {
+   width: 100%;
+   height: 100%;
+ }
+
+ .quiz-card-container {
+   width: 100%;
+   margin-top: 48px;
+   padding: 0px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .quiz-topics-container,
+ .quiz-topics {
+   width: 100px;
+ }
+
+ .quiz-topics-container img {
+   width: 80%;
+ }
+}
